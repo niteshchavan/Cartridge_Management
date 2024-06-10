@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartridges</title>
+</head>
+<body>
+    <h1>List of Cartridges</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Cartridge No</th>
+                <th>Refill Date</th>
+                <th>Used Date</th>
+                <th>User Allotted</th>
+                <th>User Department</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cartridge in cartridges %}
+            <tr>
+                <td>{{ cartridge.cartridge_no }}</td>
+                <td>{{ cartridge.refill_date }}</td>
+                <td>{{ cartridge.used_date }}</td>
+                <td>{{ cartridge.user_allotted }}</td>
+                <td>{{ cartridge.user_department }}</td>
+                <td>{{ cartridge.location }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

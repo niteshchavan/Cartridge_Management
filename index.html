@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Cartridge</title>
+</head>
+<body>
+    <h1>Add Cartridge</h1>
+    <form id="cartridgeForm">
+        <label for="cartridge_no">Cartridge No:</label>
+        <input type="text" id="cartridge_no" name="cartridge_no" required><br><br>
+        
+        <label for="refill_date">Refill Date:</label>
+        <input type="date" id="refill_date" name="refill_date" required><br><br>
+        
+        <label for="used_date">Used Date:</label>
+        <input type="date" id="used_date" name="used_date" required><br><br>
+        
+        <label for="user_allotted">User Allotted:</label>
+        <input type="text" id="user_allotted" name="user_allotted" required><br><br>
+        
+        <label for="user_department">User Department:</label>
+        <input type="text" id="user_department" name="user_department" required><br><br>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+        
+        <button type="submit">Add Cartridge</button>
+    </form>
+
+    <script>
+        document.getElementById('cartridgeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach(function(value, key){
+                data[key] = value;
+            });
+            
+            fetch('/cartridge', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding cartridge');
+            });
+        });
+    </script>
+</body>
+</html>
